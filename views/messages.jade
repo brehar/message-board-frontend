@@ -1,0 +1,43 @@
+extends ./layout.jade
+
+block content
+    .container
+        .section
+            .row.center-align
+                a.modal-trigger.waves-effect.waves-light.btn-large(href="#addModal") Make a New Post
+        .section
+            .row.messages
+                each message in messages
+                    .ul.collection
+                        .li.collection-item.avatar
+                            img.circle(src="#{message.image}")
+                            span.title
+                                a(href="mailto:#{message.email}") #{message.name}
+                            p.primary-content #{message.message}
+                            p.secondary-content #{message.timestamp}
+    #addModal.modal.modal-fixed-footer
+        .modal-content
+            h4 Add a Message
+            form
+                .input-field
+                    textarea#message.materialize-textarea
+                    label(for="message") Message
+                .input-field
+                    input#name(type="text")
+                    label(for="name") Name
+                .input-field
+                    input#email.validate(type="email")
+                    label(for="email") E-mail Address
+                .input-field
+                    input#image(type="text")
+                    label(for="image") Image URL
+        .modal-footer
+            a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href="#!") Cancel
+            a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href="#!") Submit
+    .ul.collection.hidden
+        .li.collection-item.avatar
+            img.circle(src="")
+            span.title
+                a(href="")
+                p.primary-content
+                p.secondary-content
